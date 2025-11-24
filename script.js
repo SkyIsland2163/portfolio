@@ -26,6 +26,52 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// 프로젝트 데이터 로드 및 렌더링
+async function loadProjects() {
+    try {
+        const response = await fetch('projects.json');
+        const projects = await response.json();
+        const projectsGrid = document.getElementById('projectsGrid');
+        
+        projectsGrid.innerHTML = projects.map(project => `
+            <div class="project-card">
+                <div class="project-image">
+                    <div class="project-placeholder">
+                        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="300" height="200" fill="#f0f7fa"/>
+                            <circle cx="150" cy="100" r="50" fill="#b8dce8"/>
+                            <rect x="100" y="80" width="100" height="40" fill="#a8d5e2" rx="5"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-tags">
+                        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-link">자세히 보기</a>
+                </div>
+            </div>
+        `).join('');
+        
+        // 프로젝트 카드에 애니메이션 적용
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
+            observer.observe(card);
+        });
+    } catch (error) {
+        console.error('프로젝트를 불러오는 중 오류가 발생했습니다:', error);
+        document.getElementById('projectsGrid').innerHTML = '<p>프로젝트를 불러올 수 없습니다.</p>';
+    }
+}
+
+// 페이지 로드 시 프로젝트 로드
+loadProjects();
+
 // Contact 폼 제출 처리
 const contactForm = document.getElementById('contactForm');
 
@@ -52,8 +98,12 @@ contactForm.addEventListener('submit', (e) => {
         return;
     }
     
-    // 성공 메시지 (실제로는 서버로 전송)
-    alert('메시지가 성공적으로 전송되었습니다! 감사합니다.');
+    // mailto 링크로 이메일 발송
+    const subject = encodeURIComponent(`포트폴리오 문의: ${formData.name}`);
+    const body = encodeURIComponent(`이름: ${formData.name}\n이메일: ${formData.email}\n\n메시지:\n${formData.message}`);
+    const mailtoLink = `mailto:dlkdm0703@bible.ac.kr?subject=${subject}&body=${body}`;
+    
+    window.location.href = mailtoLink;
     
     // 폼 초기화
     contactForm.reset();
@@ -74,14 +124,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// 프로젝트 카드에 애니메이션 적용
-const projectCards = document.querySelectorAll('.project-card');
-projectCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
-    observer.observe(card);
-});
+// 프로젝트 카드 애니메이션은 loadProjects 함수 내에서 처리됩니다
 
 // Contact 섹션 애니메이션
 const contactSection = document.querySelector('.contact-wrapper');

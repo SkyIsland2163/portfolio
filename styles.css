@@ -276,6 +276,26 @@ body {
     font-weight: 500;
 }
 
+.project-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 8px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.project-link:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(127, 179, 200, 0.3);
+}
+
 /* Contact 섹션 */
 .contact {
     padding: 5rem 20px;
