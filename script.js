@@ -36,6 +36,7 @@ async function loadProjects() {
         projectsGrid.innerHTML = projects.map(project => `
             <div class="project-card">
                 <div class="project-image">
+                    ${project.image ? `<img src="${project.image}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover;">` : `
                     <div class="project-placeholder">
                         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
                             <rect width="300" height="200" fill="#f0f7fa"/>
@@ -43,6 +44,7 @@ async function loadProjects() {
                             <rect x="100" y="80" width="100" height="40" fill="#a8d5e2" rx="5"/>
                         </svg>
                     </div>
+                    `}
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">${project.title}</h3>
