@@ -32,11 +32,11 @@ async function loadProjects() {
         const response = await fetch('projects.json');
         const projects = await response.json();
         const projectsGrid = document.getElementById('projectsGrid');
-        
+
         projectsGrid.innerHTML = projects.map(project => `
             <div class="project-card">
                 <div class="project-image">
-                    ${project.image ? `<img src="${project.image}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover;">` : `
+                    ${project.image ? `<img src="${project.image}" alt="${project.title}" style="width: ${project.id === 3 ? '75%' : '100%'}; height: ${project.id === 3 ? '75%' : '100%'}; object-fit: contain;">` : `
                     <div class="project-placeholder">
                         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
                             <rect width="300" height="200" fill="#f0f7fa"/>
@@ -52,11 +52,14 @@ async function loadProjects() {
                     <div class="project-tags">
                         ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
-                    <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="project-link">자세히 보기</a>
+                    <div class="project-links">
+                        ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project-link">GitHub</a>` : ''}
+                        ${project.dashboard ? `<a href="${project.dashboard}" target="_blank" rel="noopener noreferrer" class="project-link">웹 대시보드</a>` : ''}
+                    </div>
                 </div>
             </div>
         `).join('');
-        
+
         // 프로젝트 카드에 애니메이션 적용
         const projectCards = document.querySelectorAll('.project-card');
         projectCards.forEach((card, index) => {
@@ -79,34 +82,34 @@ const contactForm = document.getElementById('contactForm');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     // 폼 데이터 가져오기
     const formData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         message: document.getElementById('message').value
     };
-    
+
     // 간단한 유효성 검사
     if (!formData.name || !formData.email || !formData.message) {
         alert('모든 필드를 입력해주세요.');
         return;
     }
-    
+
     // 이메일 형식 검사
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
         alert('올바른 이메일 주소를 입력해주세요.');
         return;
     }
-    
+
     // mailto 링크로 이메일 발송
     const subject = encodeURIComponent(`포트폴리오 문의: ${formData.name}`);
     const body = encodeURIComponent(`이름: ${formData.name}\n이메일: ${formData.email}\n\n메시지:\n${formData.message}`);
     const mailtoLink = `mailto:dlkdm0703@bible.ac.kr?subject=${subject}&body=${body}`;
-    
+
     window.location.href = mailtoLink;
-    
+
     // 폼 초기화
     contactForm.reset();
 });
@@ -134,7 +137,7 @@ if (contactSection) {
     contactSection.style.opacity = '0';
     contactSection.style.transform = 'translateY(30px)';
     contactSection.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    
+
     const contactObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -143,7 +146,7 @@ if (contactSection) {
             }
         });
     }, observerOptions);
-    
+
     contactObserver.observe(contactSection);
 }
 

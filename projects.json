@@ -1,38 +1,39 @@
 [
   {
     "id": 1,
-    "title": "프로젝트 1",
-    "description": "첫 번째 프로젝트에 대한 설명입니다. 사용자 경험을 중시한 디자인과 기능을 구현했습니다.",
+    "title": "MemorySeller",
+    "description": "HTML과 CSS를 사용한 게임에 대한 정보를 보여주는 웹사이트 입니다. 사용자 경험을 고려하여 반응형으로 제작하였습니다.",
     "tags": [
       "HTML",
       "CSS",
       "JavaScript"
     ],
-    "link": "https://skyisland2163.github.io/memoryseller/",
-    "image": "image/html.png"
+    "github": "https://github.com/SkyIsland2163/memoryseller",
+    "dashboard": "https://skyisland2163.github.io/memoryseller/",
+    "image": "image/unnamed.png"
   },
   {
     "id": 2,
-    "title": "프로젝트 2",
-    "description": "두 번째 프로젝트입니다. 반응형 웹 디자인과 모던한 UI/UX를 적용했습니다.",
+    "title": "SmartHome-System",
+    "description": "스마트홈 시스템의 디자인 패턴 구현 프로젝트입니다. 다양한 디자인 패턴을 활용하여 확장 가능하고 유지보수가 쉬운 스마트홈 제어 시스템을 설계했습니다.",
     "tags": [
-      "React",
-      "Node.js",
-      "MongoDB"
+      "HTML",
+      "CSS",
+      "JavaScript"
     ],
-    "link": "https://example.com/project2",
-    "image": ""
+    "github": "https://github.com/SkyIsland2163/SmartHome-System",
+    "dashboard": "https://skyisland2163.github.io/SmartHome-System/",
+    "image": "image/oop.png"
   },
   {
     "id": 3,
-    "title": "프로젝트 3",
-    "description": "세 번째 프로젝트입니다. 성능 최적화와 접근성을 고려한 웹 애플리케이션입니다.",
+    "title": "WhatDoing",
+    "description": "어린이집, 교회, 학교 등 여러 기관에서 활용할 수 있는 웹 기반의 일정 관리 시스템을 설계하였습니다.",
     "tags": [
-      "Vue.js",
-      "Python",
-      "PostgreSQL"
+      "Project Design"
     ],
-    "link": "https://example.com/project3",
-    "image": ""
+    "github": "https://github.com/SkyIsland2163/WhatDoing",
+    "dashboard": "",
+    "image": "image/calendar.png"
   }
 ]
