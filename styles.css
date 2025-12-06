@@ -555,9 +555,12 @@ body {
         margin: 1rem 0;
     }
 
-    .hero {
+    .hero .container {
         flex-direction: column;
         text-align: center;
+    }
+
+    .hero {
         padding: 2rem 20px;
     }
 
