@@ -77,42 +77,7 @@ async function loadProjects() {
 // 페이지 로드 시 프로젝트 로드
 loadProjects();
 
-// Contact 폼 제출 처리
-const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    // 폼 데이터 가져오기
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-    };
-
-    // 간단한 유효성 검사
-    if (!formData.name || !formData.email || !formData.message) {
-        alert('모든 필드를 입력해주세요.');
-        return;
-    }
-
-    // 이메일 형식 검사
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-        alert('올바른 이메일 주소를 입력해주세요.');
-        return;
-    }
-
-    // mailto 링크로 이메일 발송
-    const subject = encodeURIComponent(`포트폴리오 문의: ${formData.name}`);
-    const body = encodeURIComponent(`이름: ${formData.name}\n이메일: ${formData.email}\n\n메시지:\n${formData.message}`);
-    const mailtoLink = `mailto:dlkdm0703@bible.ac.kr?subject=${subject}&body=${body}`;
-
-    window.location.href = mailtoLink;
-
-    // 폼 초기화
-    contactForm.reset();
-});
 
 // 스크롤 애니메이션
 const observerOptions = {
